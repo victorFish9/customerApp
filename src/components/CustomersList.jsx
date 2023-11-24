@@ -6,6 +6,7 @@ import 'ag-grid-community/styles/ag-theme-material.css';
 
 export default function CustomersList() {
 
+    //const for data manage and for future agGrid colummns 
     const [customer, setCustomers] = useState([{ firstname: '', lastname: '', streetaddress: '', postcode: '', city: '', email: '', phone: '' }])
 
     const columns = [

@@ -5,7 +5,7 @@ import TrainingList from './components/TrainingList'
 
 
 function App() {
-  const [value, setValue] = useState("Home")
+  const [value, setValue] = useState("Customers")
   const handleChange = (event, value) => {
     setValue(value)
   }
