@@ -28,7 +28,7 @@ export default function EditCustomer(props) {
 
     const handleEdit = () => {
         const pathToCustomerHref = props.customer.links.find(link => link.rel === 'customer')
-        const pathToCustomerHref2 = props.customer.links.find(link => link.rel === 'customer')
+
         props.editCustomer(customer, pathToCustomerHref.href)
         console.log("Props: ", pathToCustomerHref)
         setOpen(false)

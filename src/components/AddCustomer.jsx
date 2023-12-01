@@ -30,7 +30,7 @@ export default function AddCustomer(props) {
     }
     return (
         <>
-            <Button onClick={() => setOpen(true)}>Add cusotmer</Button>
+            <Button onClick={() => setOpen(true)}>Add customer</Button>
             <Dialog open={open} onClose={handleClose}>
                 <DialogTitle>New customer</DialogTitle>
                 <DialogContent>

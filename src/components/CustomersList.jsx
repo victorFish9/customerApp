@@ -6,6 +6,7 @@ import 'ag-grid-community/styles/ag-theme-material.css';
 import AddCustomer from "./AddCustomer";
 import DeleteCustomer from "./DeleteCustomer";
 import EditCustomer from "./EditCustomer";
+import AddTraining from "./AddTraining";
 
 export default function CustomersList() {
 
@@ -21,6 +22,13 @@ export default function CustomersList() {
         { headerName: 'City', field: 'city', sortable: true, filter: true },
         { headerName: 'Phone', field: 'phone', sortable: true, filter: true },
         {
+            headerName: 'Add Training',
+            cellRenderer: (params) =>
+                (<AddTraining saveTraining={saveTraining} /*customerUrl={params.data.links.find(link => link.rel === "self")?.href}*/ />),
+
+
+        },
+        {
             filterable: false,
             sortable: false,
             width: 100,
@@ -34,6 +42,7 @@ export default function CustomersList() {
                 <DeleteCustomer params={params} getCustomers={getCustomers} />
             ),
         },
+
     ]
 
     const gridRef = useRef()
@@ -50,6 +59,21 @@ export default function CustomersList() {
             .catch(err => console.error(err))
     }
 
+    const saveTraining = (td) => {
+        fetch('https://traineeapp.azurewebsites.net/api/trainings', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(td),
+        })
+            .then((response) => {
+                if (response.ok) {
+                    fetchData()
+                }
+            })
+    }
+
     const saveCustomer = (c) => {
         fetch('https://traineeapp.azurewebsites.net/api/customers', {
             method: 'POST',
@@ -57,7 +81,7 @@ export default function CustomersList() {
             body: JSON.stringify(c),
         })
             .then(response => {
-                if (response.ok)
+                if (response)
                     getCustomers()
                 else
                     alert("Something went wrong")
