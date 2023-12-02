@@ -14,7 +14,8 @@ export default function CustomersList() {
 
     //const for data manage and for future agGrid colummns 
     const [customer, setCustomers] = useState([{ firstname: '', lastname: '', streetaddress: '', postcode: '', city: '', email: '', phone: '' }])
-
+    //const customerUrl = customer.content.links.find(link => link.rel === "self")?.href
+    console.log("Customerlink: ", customer.content)
     const columns = [
         { headerName: 'Firstname', field: 'firstname', sortable: true, filter: true },
         { headerName: 'Lastname', field: 'lastname', sortable: true, filter: true },
@@ -22,15 +23,17 @@ export default function CustomersList() {
         { headerName: 'Address', field: 'streetaddress', sortable: true, filter: true },
         { headerName: 'Postcode', field: 'postcode', sortable: true, filter: true },
         { headerName: 'City', field: 'city', sortable: true, filter: true },
-        { headerName: 'Phone', field: 'phone', sortable: true, filter: true },
+        { headerName: 'Phone', field: 'phone', sortable: true, filter: true, },
         {
             headerName: 'Add Training',
             cellRenderer: (params) =>
                 (<AddTraining saveTraining={saveTraining} /*customerUrl={params.data.links.find(link => link.rel === "self")?.href}*/ />),
+            width: 200,
 
 
         },
         {
+            headerName: 'Edit',
             filterable: false,
             sortable: false,
             width: 100,
@@ -39,7 +42,7 @@ export default function CustomersList() {
         {
             headerName: 'Delete',
             field: 'links.self.href',
-            width: 90,
+            width: 150,
             cellRenderer: (params) => (
                 <DeleteCustomer params={params} getCustomers={getCustomers} />
             ),

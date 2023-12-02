@@ -23,6 +23,7 @@ export default function EditCustomer(props) {
     }
 
     const handleInputChange = (event) => {
+        console.log(customer)
         setCustomers({ ...customer, [event.target.name]: event.target.value })
     }
 
@@ -44,12 +45,12 @@ export default function EditCustomer(props) {
                 <DialogContent>
                     <TextField label="First name" value={customer.firstname}
                         onChange={handleInputChange}
-                        name="First name"
+                        name="firstname"
                     >
                     </TextField>
                     <TextField label="Last name" value={customer.lastname}
                         onChange={handleInputChange}
-                        name="Last name"
+                        name="lastname"
                     >
                     </TextField>
                     <TextField
