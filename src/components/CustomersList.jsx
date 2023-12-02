@@ -1,12 +1,14 @@
-import { useEffect, useState } from "react"
+import React, { useEffect, useState, useCallback, useMemo, useRef } from "react"
 import { AgGridReact } from "ag-grid-react"
-import { useRef } from "react"
+
 import 'ag-grid-community/styles/ag-grid.css';
 import 'ag-grid-community/styles/ag-theme-material.css';
 import AddCustomer from "./AddCustomer";
 import DeleteCustomer from "./DeleteCustomer";
 import EditCustomer from "./EditCustomer";
 import AddTraining from "./AddTraining";
+import { Button } from "@mui/material";
+import { CSVLink } from "react-csv";
 
 export default function CustomersList() {
 
@@ -46,6 +48,8 @@ export default function CustomersList() {
     ]
 
     const gridRef = useRef()
+
+
 
     useEffect(() => getCustomers(), [])
 
@@ -107,20 +111,36 @@ export default function CustomersList() {
             })
     }
 
+    //CSV row
+    const headers = [
+        { label: 'First Name', key: 'firstname' },
+        { label: 'Last Name', key: 'lastname' },
+        { label: 'Street Address', key: 'streetaddress' },
+        { label: 'Postcode', key: 'postcode' },
+        { label: 'City', key: 'city' },
+        { label: 'Email', key: 'email' },
+        { label: 'Phone', key: 'phone' },
+    ]
 
-    console.log(customer)
+
+    console.log("Customers: ", customer)
     return (
         <>
             <h3>
                 List of customers
             </h3>
             <AddCustomer saveCustomer={saveCustomer} />
+            <CSVLink data={customer} headers={headers} filename={'customer_data.csv'}>
+                <Button>Export CSV</Button>
+            </CSVLink>
             <div className="ag-theme-material" style={{ height: 700, width: '100%', margin: 'auto' }}>
                 <AgGridReact
                     columnDefs={columns}
                     rowData={customer}
                     animateRows={true}
                     suppressCellSelection={true}
+                    suppressExcelExport={true}
+
                     pagination={true}
                     paginationPageSize={15}
                     ref={gridRef}

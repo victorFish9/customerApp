@@ -35,7 +35,7 @@ export default function AddTraining(props) {
             <Button style={{ margin: 10 }} variant="outlined" onClick={() => setOpen(true)}>
                 Add Training
             </Button>
-            <Dialog open={open} onClose={handleClose}>
+            <Dialog open={open} onClose={() => setOpen(false)}>
                 <DialogTitle>New Training</DialogTitle>
                 <LocalizationProvider dateAdapter={AdapterDayjs}>
                     <DemoContainer components={['DateTimePicker']}>
