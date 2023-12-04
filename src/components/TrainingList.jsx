@@ -11,7 +11,7 @@ export default function TrainingList() {
     //const for data manage and for future agGrid colummns 
     const [training, setTraining] = useState([]);
     const columns = [
-        { headerName: "Activity", field: "activity", sortable: true, filter: true },
+        { headerName: "Activity", field: "activity", sortable: true, filter: true, width: '300px', height: '150px' },
         { headerName: "Duration", field: "duration", sortable: true, filter: true },
         {
             headerName: "Customer", field: "customer", sortable: true, filter: true, cellRenderer: params => (
@@ -74,6 +74,7 @@ export default function TrainingList() {
                 paginationPageSize={20}
                 suppressCellSelection={true}
                 rowHeight={50}
+                domLayout="autoHeight"
             />
 
         </div>
