@@ -19,7 +19,7 @@ export default function TrainingList() {
             ),
         },
         {
-            headerName: "Date", field: "date", sortable: true, filter: true, valueGetter: (params) => format(new Date(params.data.date), 'dd/MM/yyyy hh:mm')
+            headerName: "Date", field: "date", sortable: true, filter: true, valueGetter: (params) => format(new Date(params.data.date), 'hh:mm dd/MM/yyyy')
         },
         {
             headerName: 'Delete',

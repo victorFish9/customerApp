@@ -14,8 +14,7 @@ export default function CustomersList() {
 
     //const for data manage and for future agGrid colummns 
     const [customer, setCustomers] = useState([{ firstname: '', lastname: '', streetaddress: '', postcode: '', city: '', email: '', phone: '' }])
-    //const customerUrl = customer.content.links.find(link => link.rel === "self")?.href
-    console.log("Customerlink: ", customer.content)
+
     const columns = [
         { headerName: 'Firstname', field: 'firstname', sortable: true, filter: true },
         { headerName: 'Lastname', field: 'lastname', sortable: true, filter: true },
@@ -143,11 +142,10 @@ export default function CustomersList() {
                     animateRows={true}
                     suppressCellSelection={true}
                     suppressExcelExport={true}
-
                     pagination={true}
                     paginationPageSize={15}
                     ref={gridRef}
-                    onGridReady={params => gridRef.current = params.api}
+
                 />
             </div>
         </>
